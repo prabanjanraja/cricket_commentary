@@ -30,13 +30,12 @@ export default class ScoreboardComponent extends Component {
     var len = this.scores_service.scores.length;
     var cur_ovr = -1;
     var sum = 0;
-    console.log(sum);
     for (var i = 0; i < len + (6 - (len % 6)); i++) {
       if (i % 6 === 0) {
-        ret = [...ret, ['over ' + (cur_ovr + 1)]];
-        cur_ovr += 1;
         if (i !== 0)
-          ret[cur_ovr] = [...ret[cur_ovr], sum];
+          ret[cur_ovr] = [...ret[cur_ovr], "total " + sum];
+        cur_ovr += 1;
+        ret = [...ret, ['over ' + (cur_ovr + 1)]];
         sum = 0;
       }
       if (i < len)
@@ -46,7 +45,7 @@ export default class ScoreboardComponent extends Component {
       if (!isNaN(this.scores_service.scores[i]))
         sum = sum + parseInt(this.scores_service.scores[i]);
     }
-    ret[cur_ovr] = [...ret[cur_ovr], sum];
+    ret[cur_ovr] = [...ret[cur_ovr], "total " + sum];
     return ret;
   }
 }
