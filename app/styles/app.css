@@ -1,0 +1,32 @@
+.scoreboard-title
+{
+    padding: 20px;
+    text-align: center;
+    font-weight: 900;
+}
+button
+{
+    background-color: rgb(0, 110, 255);
+    box-sizing: content-box;
+    fill-rule: nonzero;
+    height: 25px;
+    width: 50px;
+    color: antiquewhite;
+    text-decoration: none;
+    padding: 5px;
+}
+table
+{
+    min-width: 90%;
+    font-display: inherit;
+    font-weight: 900;
+}
+td{
+    border-style: solid;
+    padding: 5px;
+}
+input{
+  margin: 30px;
+  width: max-content;
+  padding: auto;
+}
