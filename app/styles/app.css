@@ -14,19 +14,51 @@ button
     color: antiquewhite;
     text-decoration: none;
     padding: 5px;
-}
+    font-style:normal;
+    font-weight: bolder;
+    font-size: 55%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-variant: small-caps;
+    border-radius: 5px;
+    border-width: 4px;
+    border-color:skyblue;
+    min-width: fit-content;
+  }
 table
 {
-    min-width: 90%;
+  position: relative;
+  /* margin: 40px; */
+  margin: 40px,0px;
+    /* min-width: 49%; */
     font-display: inherit;
     font-weight: 900;
+    display: inline-table;
+}
+.scores-table
+{
+  min-width: 65%;
+}
+.persons-table
+{
+  min-width: 33%;
 }
 td{
+  border-color: darkslategrey;
+  fill: dimgray;
+  fill-opacity: initial;
+  background-color: rgb(207, 207, 207);
     border-style: solid;
     padding: 5px;
+    font-size: 120%;
 }
 input{
   margin: 30px;
   width: max-content;
   padding: auto;
+}
+caption
+{
+  font-size: xx-large;
+  font-style: italic;
+  font-weight: bolder;
 }

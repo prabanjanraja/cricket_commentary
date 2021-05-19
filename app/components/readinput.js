@@ -15,6 +15,9 @@ export default class ReadinputComponent extends Component {
         score = 'out';
         this.wickets += 1;
       }
+      if (text === '0') {
+        score = '.';
+      }
       this.scores_service.add(score);
     }
   }

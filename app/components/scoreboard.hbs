@@ -2,20 +2,24 @@
   <h1>
     {{this.playing_team }} has to score {{this.total_runs }} within {{this.total_overs}} to win the game.
     <button type="button" {{on 'click' this.toggle}}>
-      start
+      {{this.button_text}}
     </button>
   </h1>
-  <h1>{{this.playing_team }} has to score {{this.remaining_score }} within {{this.scores_service.wickets_remaining}} to
+  {{#if this.display}}
+  <div>
+    <table class="scores-table">
+      <caption>Scores Table</caption>
+      <tbody>
+        {{#each this.over_score as |overScore|}}
+        <Createrow @input_data={{overScore}} />
+        {{/each}}
+      </tbody>
+    </table>
+    <PersonTable />
+  </div>
+  {{/if}}
+  <h1>{{this.playing_team }} has to score {{this.remaining_score }} within {{this.scores_service.wickets_remaining}}
+    wickets to
     win the game.
   </h1>
-
-  {{#if this.display}}
-  <table>
-    <tbody>
-      {{#each this.over_score as |overScore|}}
-      <Overdetails @over_score={{overScore}} />
-      {{/each}}
-    </tbody>
-  </table>
-  {{/if}}
 </div>

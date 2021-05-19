@@ -1,0 +1,18 @@
+<table class="persons-table">
+  <caption>Players Table</caption>
+  <thead>
+    <tr>
+      <td>
+        players
+      </td>
+      <td>
+        Runs scored
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.player_record as |record| }}
+    <Createrow @input_data={{record}} />
+    {{/each}}
+  </tbody>
+</table>

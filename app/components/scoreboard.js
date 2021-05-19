@@ -7,9 +7,10 @@ import { action } from '@ember/object';
 
 export default class ScoreboardComponent extends Component {
   @tracked display = false;
-
+  @tracked button_text = "Display";
   @action
   toggle() {
+    this.button_text = "Hide";
     this.display = !this.display;
   }
 
@@ -17,7 +18,6 @@ export default class ScoreboardComponent extends Component {
   total_overs = 20;
   playing_team = "Chennai Super Kings";
   current_over = 0;
-  player = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   @service('score') scores_service;
 
   get remaining_score() {
