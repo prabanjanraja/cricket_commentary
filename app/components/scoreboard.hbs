@@ -7,14 +7,7 @@
   </h1>
   {{#if this.display}}
   <div>
-    <table class="scores-table">
-      <caption>Scores Table</caption>
-      <tbody>
-        {{#each this.over_score as |overScore|}}
-        <Createrow @input_data={{overScore}} />
-        {{/each}}
-      </tbody>
-    </table>
+    <Scorestable />
     <PersonTable />
   </div>
   {{/if}}

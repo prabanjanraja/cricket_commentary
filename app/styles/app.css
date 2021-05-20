@@ -42,7 +42,7 @@ table
 {
   min-width: 33%;
 }
-td{
+th,td{
   border-color: darkslategrey;
   fill: dimgray;
   fill-opacity: initial;

@@ -6,7 +6,7 @@ import { action } from '@ember/object';
 
 
 export default class ScoreboardComponent extends Component {
-  @tracked display = false;
+  @tracked display = true;
   @tracked button_text = "Display";
   @action
   toggle() {
@@ -25,27 +25,5 @@ export default class ScoreboardComponent extends Component {
   }
 
 
-  get over_score() {
-    var ret = []
-    var len = this.scores_service.scores.length;
-    var cur_ovr = -1;
-    var sum = 0;
-    for (var i = 0; i < len + (6 - (len % 6)); i++) {
-      if (i % 6 === 0) {
-        if (i !== 0)
-          ret[cur_ovr] = [...ret[cur_ovr], "total " + sum];
-        cur_ovr += 1;
-        ret = [...ret, ['over ' + (cur_ovr + 1)]];
-        sum = 0;
-      }
-      if (i < len)
-        ret[cur_ovr] = [...ret[cur_ovr], this.scores_service.scores[i]];
-      else
-        ret[cur_ovr] = [...ret[cur_ovr], ' '];
-      if (!isNaN(this.scores_service.scores[i]))
-        sum = sum + parseInt(this.scores_service.scores[i]);
-    }
-    ret[cur_ovr] = [...ret[cur_ovr], "total " + sum];
-    return ret;
-  }
+
 }

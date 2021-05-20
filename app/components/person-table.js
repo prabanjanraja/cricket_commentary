@@ -3,22 +3,18 @@ import { inject as service } from '@ember/service';
 
 export default class PersonTableComponent extends Component {
   @service('score') scores;
-  demo = [1, 2, 3];
-  get current_player() {
-    return this.scores.current_player;
-  }
-  get players_score() {
-    return this.scores.players_score;
-  }
-  get player_record() {
+
+  get
+    player_record() {
     var services = this.scores;
     var ret = [];
     for (var i = 0; i < 10; i++) {
-      var playername = services.players[i];
-      if (playername === services.current_player) {
-        playername = playername + '*';
+      var playername = this.scores.player_names[i];
+      if (playername === this.scores.current_player) {
+        ret[i] = [this.scores.player_names[i] + '*', services.players_score[i]];
       }
-      ret = [...ret, [playername, services.players_score[i]]];
+      else
+        ret[i] = [this.scores.player_names[i], services.players_score[i]];
     }
     return ret;
   }

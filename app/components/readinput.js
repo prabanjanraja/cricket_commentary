@@ -18,6 +18,10 @@ export default class ReadinputComponent extends Component {
       if (text === '0') {
         score = '.';
       }
+      if (text > 6 || text < -1) {
+        alert('invalid input');
+        return;
+      }
       this.scores_service.add(score);
     }
   }
