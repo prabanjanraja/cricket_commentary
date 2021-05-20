@@ -36,6 +36,8 @@ export default class ScoreService extends Service {
       this.players_score[this.current_players[0]] += parseInt(score);
       if (score % 2 === 1)
         this.swap_players();
+      else
+        this.current_players = this.current_players;
     }
     else {
       this.current_players = [this.current_players[1], 11 - this.wickets_remaining];
