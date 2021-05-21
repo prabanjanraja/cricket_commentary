@@ -1,7 +1,13 @@
 <tr>
   {{#each @input_data as |data|}}
+  {{#if data}}
   <td>
     {{data}}
   </td>
+  {{else}}
+  <td class="editable">
+    <Readinput />
+  </td>
+  {{/if}}
   {{/each}}
 </tr>

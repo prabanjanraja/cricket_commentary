@@ -16,7 +16,6 @@ export default class PersonTableComponent extends Component {
       else
         ret[i] = [this.scores.player_names[i], services.players_score[i]];
     }
-    console.log(ret);
     return ret;
   }
 }
