@@ -12,7 +12,6 @@ export default class ScorestableComponent extends Component {
     var len = this.scores_service.scores.length;
     var cur_ovr = -1;
     var sum = 0;
-    console.log('len', len);
     for (var i = 0; i < len + 5 - ((len - 1) % 6); i++) {
       if (i % 6 === 0) {
         if (i !== 0)
@@ -30,7 +29,6 @@ export default class ScorestableComponent extends Component {
       }
     }
     ret[cur_ovr] = [...ret[cur_ovr], sum.toString()];
-    console.log(sum);
     return ret;
   }
 }

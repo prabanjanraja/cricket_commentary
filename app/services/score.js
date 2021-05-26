@@ -1,31 +1,41 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-
 export default class ScoreService extends Service {
   @tracked
   scores = [false];
   over = 0;
   @tracked total_score = 0;
-  @tracked player_names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-  @tracked players_score = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
+  @tracked player_names = ['player 1', 'player 2', 'player 3', 'player 4', 'player 5', 'player 6', 'player 7', 'player 8', 'player 9', 'player 10'];
+  @tracked players_score1 = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
   @tracked wickets_remaining = 10;
   @tracked players = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  @tracked current_players = [0, 1];
+  @tracked players_score = this.precompute();
+  precompute() {
+    var players_scores = Map;
+    this.player_names.forEach(element => {
+      players_scores[element] = 0;
+    });
+    return players_scores;
+  }
+  print_scores() {
+    this.player_names.forEach(element => {
+      console.log(element, this.players_score[element]);
+    });
+  }
+  /* @tracked current_players = [0, 1];
   get current_player() {
     return this.player_names[this.current_players[0]];
-  }
+  } */
+  players_remaining = [...this.player_names];
+  current_player = this.players_remaining.shift();
   get get_scores() {
     return this.scores;
-  }
-  swap_players() {
-    this.current_players = [this.current_players[1], this.current_players[0]];
   }
   @action
   add(score) {
     if ((this.scores.length !== 0) && this.scores.length % 6 === 0) {
       this.over += 1;
-      this.swap_players();
     }
     if (score >= 4) {
       alert('Hurray !!!');
@@ -34,16 +44,32 @@ export default class ScoreService extends Service {
     this.scores = [...this.scores, score, false];
     if (score !== 'out' && score !== '.') {
       this.total_score += parseInt(score);
-      this.players_score[this.current_players[0]] = parseInt(this.players_score[this.current_players[0]]);
-      this.players_score[this.current_players[0]] += parseInt(score);
-      if (score % 2 === 1)
-        this.swap_players();
-      else
-        this.current_players = this.current_players;
+      this.players_score[this.current_player] = parseInt(this.players_score[this.current_player]);
+      this.players_score[this.current_player] += parseInt(score);
+      // this.current_player = this.current_player;
     }
     else {
-      this.current_players = [this.current_players[1], 12 - this.wickets_remaining];
+      var index = this.players_remaining.indexOf(this.current_player);
+      this.players_remaining.splice(index, 1);
+      this.current_player = this.players_remaining.shift();
+      console.log(this.current_player);
       this.wickets_remaining -= 1;
+    }
+    // this.print_scores();
+    this.players_score = this.players_score;
+  }
+  @action
+  choose_player(player_name) {
+    if (this.players_remaining.includes(player_name)) {
+      this.players_remaining = [...this.players_remaining, this.current_player];
+      this.current_player = player_name;
+      this.players_score = this.players_score;
+      var index = this.players_remaining.indexOf(player_name);
+      this.players_remaining.splice(index, 1);
+      // delete this.players_remaining[index];
+      console.log(player_name);
+    } else {
+      alert('Invalid choice');
     }
   }
 }

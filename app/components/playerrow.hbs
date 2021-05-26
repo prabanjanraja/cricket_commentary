@@ -1,0 +1,11 @@
+<tr>
+  {{#each @input_data as |data index| }}
+  {{#if index}}
+  <td>
+    {{data}}
+  </td>
+  {{else}}
+  <Custombutton @player_name={{data}} />
+  {{/if}}
+  {{/each}}
+</tr>
