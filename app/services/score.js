@@ -46,7 +46,6 @@ export default class ScoreService extends Service {
       this.total_score += parseInt(score);
       this.players_score[this.current_player] = parseInt(this.players_score[this.current_player]);
       this.players_score[this.current_player] += parseInt(score);
-      // this.current_player = this.current_player;
     }
     else {
       var index = this.players_remaining.indexOf(this.current_player);
@@ -55,7 +54,6 @@ export default class ScoreService extends Service {
       console.log(this.current_player);
       this.wickets_remaining -= 1;
     }
-    // this.print_scores();
     this.players_score = this.players_score;
   }
   @action
@@ -66,7 +64,6 @@ export default class ScoreService extends Service {
       this.players_score = this.players_score;
       var index = this.players_remaining.indexOf(player_name);
       this.players_remaining.splice(index, 1);
-      // delete this.players_remaining[index];
       console.log(player_name);
     } else {
       alert('Invalid choice');
