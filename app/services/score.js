@@ -48,23 +48,31 @@ export default class ScoreService extends Service {
       this.players_score[this.current_player] += parseInt(score);
     }
     else {
-      var index = this.players_remaining.indexOf(this.current_player);
-      this.players_remaining.splice(index, 1);
+      // console.log("before splice", this.players_remaining);
+      // this.players_remaining.splice(index, 1);
+      console.log("after splice", this.players_remaining);
       this.current_player = this.players_remaining.shift();
       console.log(this.current_player);
+      console.log(this.players_remaining);
       this.wickets_remaining -= 1;
     }
     this.players_score = this.players_score;
   }
+  isValid(player_name) {
+    return this.players_remaining.includes(player_name);
+  }
+  isCurrentPlayer(player_name) {
+    return this.current_player === player_name;
+  }
   @action
   choose_player(player_name) {
-    if (this.players_remaining.includes(player_name)) {
+    if (this.isValid(player_name)) {
       this.players_remaining = [...this.players_remaining, this.current_player];
       this.current_player = player_name;
-      this.players_score = this.players_score;
+      this.players_score = this.players_score; // so the component will update
       var index = this.players_remaining.indexOf(player_name);
       this.players_remaining.splice(index, 1);
-      console.log(player_name);
+      // console.log("swithc players ", this.players_remaining);
     } else {
       alert('Invalid choice');
     }

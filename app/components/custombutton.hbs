@@ -1,2 +1,3 @@
-<button type="button" class="player-name" {{on 'click' (fn this.scores_service.choose_player
+<button role="button" class="player-name {{if this.isDisabled 'disabled' (if this.isSuccess 'red' 'green')}}"
+  disabled={{@isDisabled}} type="button" {{on 'click' (fn this.scores_service.choose_player
   @player_name)}}>{{@player_name}}</button>

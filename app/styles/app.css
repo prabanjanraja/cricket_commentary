@@ -88,3 +88,19 @@ caption
   font-style: italic;
   font-weight: bolder;
 }
+
+.disabled
+{
+  /* background-color:black; */
+  border-color: black;
+}
+
+.green{
+  /* background-color:cadetblue;
+   */
+   border-color:greenyellow;
+}
+
+.red{
+  border-color:red;
+}
