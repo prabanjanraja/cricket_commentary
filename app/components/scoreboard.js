@@ -14,16 +14,13 @@ export default class ScoreboardComponent extends Component {
     this.display = !this.display;
   }
 
-  total_runs = 200;
-  total_overs = 20;
+
   playing_team = "Chennai Super Kings";
   current_over = 0;
   @service('score') scores_service;
 
   get remaining_score() {
-    return this.total_runs - this.scores_service.total_score;
+    return this.scores_service.total_runs - this.scores_service.total_score;
   }
-
-
 
 }

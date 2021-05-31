@@ -5,6 +5,8 @@ export default class ScoreService extends Service {
   @tracked
   scores = [false];
   over = 0;
+  @tracked total_runs = 200;
+  @tracked total_overs = 20;
   @tracked total_score = 0;
   @tracked player_names = ['player 1', 'player 2', 'player 3', 'player 4', 'player 5', 'player 6', 'player 7', 'player 8', 'player 9', 'player 10'];
   @tracked players_score1 = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
@@ -23,10 +25,6 @@ export default class ScoreService extends Service {
       console.log(element, this.players_score[element]);
     });
   }
-  /* @tracked current_players = [0, 1];
-  get current_player() {
-    return this.player_names[this.current_players[0]];
-  } */
   players_remaining = [...this.player_names];
   current_player = this.players_remaining.shift();
   get get_scores() {
@@ -48,15 +46,13 @@ export default class ScoreService extends Service {
       this.players_score[this.current_player] += parseInt(score);
     }
     else {
-      // console.log("before splice", this.players_remaining);
-      // this.players_remaining.splice(index, 1);
       console.log("after splice", this.players_remaining);
       this.current_player = this.players_remaining.shift();
       console.log(this.current_player);
       console.log(this.players_remaining);
       this.wickets_remaining -= 1;
     }
-    this.players_score = this.players_score;
+    this.players_score = this.players_score; // to update the UI
   }
   isValid(player_name) {
     return this.players_remaining.includes(player_name);
@@ -72,9 +68,11 @@ export default class ScoreService extends Service {
       this.players_score = this.players_score; // so the component will update
       var index = this.players_remaining.indexOf(player_name);
       this.players_remaining.splice(index, 1);
-      // console.log("swithc players ", this.players_remaining);
     } else {
       alert('Invalid choice');
     }
+  }
+  get isGameOver() {
+    return this.wickets_remaining === 0 || (this.total_runs - this.total_score) <= 0 || this.over === this.total_overs;
   }
 }
