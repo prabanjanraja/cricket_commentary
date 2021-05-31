@@ -1,6 +1,9 @@
+{{#if this.scores_service.isGameOver}}
 <div class="scoreboard-title">
   <h1>
-    {{this.playing_team }} has to score {{this.total_runs }} within {{this.total_overs}} to win the game.
+    {{this.scores_service.playing_team}} has to score {{this.scores_service.total_runs }} within
+    {{this.scores_service.total_overs}} overs to win the
+    game.
     <button class="Display" type="button" {{on 'click' this.toggle}}>
       {{this.button_text}}
     </button>
@@ -11,8 +14,12 @@
     <PersonTable />
   </div>
   {{/if}}
-  <h1>{{this.playing_team }} has to score {{this.remaining_score }} within {{this.scores_service.wickets_remaining}}
+  <h1>{{this.scores_service.playing_team }} has to score {{this.remaining_score }} within
+    {{this.scores_service.wickets_remaining}}
     wickets to
     win the game.
   </h1>
 </div>
+{{else}}
+<Result />
+{{/if}}

@@ -15,12 +15,9 @@ export default class ScoreboardComponent extends Component {
   }
 
 
-  playing_team = "Chennai Super Kings";
   current_over = 0;
   @service('score') scores_service;
 
-  get remaining_score() {
-    return this.scores_service.total_runs - this.scores_service.total_score;
-  }
+  @tracked remaining_score = this.scores_service.remaining_score;
 
 }

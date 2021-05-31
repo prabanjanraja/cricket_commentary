@@ -104,3 +104,20 @@ caption
 .red{
   border-color:red;
 }
+.Won{
+  color:green;
+  text-align: center;
+  vertical-align: middle;
+  font-size:500%;
+  padding: 15px;
+  font-family: monospace;
+}
+.GameOver,.Lost
+{
+  color:red;
+  padding: 10px;
+  text-align: center;
+  font-size: 500%;
+  font-weight: 900;
+  font-family: monospace;
+}

@@ -4,9 +4,10 @@ import { action } from '@ember/object';
 export default class ScoreService extends Service {
   @tracked
   scores = [false];
-  over = 0;
-  @tracked total_runs = 200;
-  @tracked total_overs = 20;
+  @tracked over = 0;
+  total_runs = 5;
+  total_overs = 1;
+  playing_team = "Chennai Super Kings";
   @tracked total_score = 0;
   @tracked player_names = ['player 1', 'player 2', 'player 3', 'player 4', 'player 5', 'player 6', 'player 7', 'player 8', 'player 9', 'player 10'];
   @tracked players_score1 = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
@@ -45,8 +46,7 @@ export default class ScoreService extends Service {
       this.players_score[this.current_player] = parseInt(this.players_score[this.current_player]);
       this.players_score[this.current_player] += parseInt(score);
     }
-    else {
-      console.log("after splice", this.players_remaining);
+    else if (score !== '.') {
       this.current_player = this.players_remaining.shift();
       console.log(this.current_player);
       console.log(this.players_remaining);
@@ -72,7 +72,11 @@ export default class ScoreService extends Service {
       alert('Invalid choice');
     }
   }
+  get remaining_score() {
+    return this.total_runs - this.total_score;
+  }
   get isGameOver() {
-    return this.wickets_remaining === 0 || (this.total_runs - this.total_score) <= 0 || this.over === this.total_overs;
+    let ans = this.wickets_remaining === 0 || this.remaining_score <= 0 || this.over >= this.total_overs;
+    return !ans;
   }
 }
