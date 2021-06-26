@@ -18,7 +18,7 @@ export default class ReadinputComponent extends Component {
       if (text === '0') {
         score = '.';
       }
-      if (text > 6 || text < -1) {
+      if (!((text <= 6 && text >= 0) || text === 'out')) {
         alert('invalid input');
         return;
       }

@@ -18,6 +18,4 @@ export default class ScoreboardComponent extends Component {
   current_over = 0;
   @service('score') scores_service;
 
-  @tracked remaining_score = this.scores_service.remaining_score;
-
 }

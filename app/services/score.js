@@ -5,8 +5,8 @@ export default class ScoreService extends Service {
   @tracked
   scores = [false];
   @tracked over = 0;
-  total_runs = 5;
-  total_overs = 1;
+  @tracked total_runs = 25;
+  total_overs = 5;
   playing_team = "Chennai Super Kings";
   @tracked total_score = 0;
   @tracked player_names = ['player 1', 'player 2', 'player 3', 'player 4', 'player 5', 'player 6', 'player 7', 'player 8', 'player 9', 'player 10'];
